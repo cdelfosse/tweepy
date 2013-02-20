@@ -137,6 +137,13 @@ class API(object):
         allowed_param = ['id', 'user_id', 'screen_name']
     )
 
+    ''' statuses/oembed '''
+    get_oembed = bind_api(
+        path = '/statuses/oembed.json',
+        payload_type = 'json',
+        allowed_param = ['id', 'url', 'maxwidth', 'hide_media', 'omit_script', 'align', 'related', 'lang']
+    )
+
     """ Perform bulk look up of users from user ID or screenname """
     def lookup_users(self, user_ids=None, screen_names=None):
         return self._lookup_users(list_to_csv(user_ids), list_to_csv(screen_names))
@@ -278,6 +285,13 @@ class API(object):
         allowed_param = ['id', 'user_id', 'screen_name', 'cursor']
     )
 
+    """ friends/list """
+    friends = bind_api(
+        path = '/friends/list.json',
+        payload_type = 'user', payload_list = True,
+        allowed_param = ['id', 'user_id', 'screen_name', 'page', 'cursor']
+    )
+
     """ friendships/incoming """
     friendships_incoming = bind_api(
         path = '/friendships/incoming.json',
@@ -297,6 +311,13 @@ class API(object):
         path = '/followers/ids.json',
         payload_type = 'ids',
         allowed_param = ['id', 'user_id', 'screen_name', 'cursor']
+    )
+
+    """ followers/list """
+    followers = bind_api(
+        path = '/followers/list.json',
+        payload_type = 'user', payload_list = True,
+        allowed_param = ['id', 'user_id', 'screen_name', 'page', 'cursor']
     )
 
     """ account/verify_credentials """
